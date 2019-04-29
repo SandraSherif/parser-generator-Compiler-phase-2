@@ -4,31 +4,25 @@ Compiler phase 2
 Projects steps:
 
 1- reading grammar file and specify if the tokens are terminals or non terminls 
-
-->Implementation(✔)     Testing (✔)<-
+              ->Implementation(✔)     Testing (✔)<-
 
 2-Compute first of each terminal 
-
-->Implementation(✔)     Testing (✔)<-
+              ->Implementation(✔)     Testing (✔)<-
 
 3- compute follow of each terminal
-
-->Implementation(❌)     Testing (❌)<-
+              ->Implementation(❌)     Testing (❌)<-
 
 4-check if grammar is LL(1) or not, in case its not LL(1) an error message should appears and the program ends 
-->Implementation(❌)     Testing (❌)<-
+              ->Implementation(❌)     Testing (❌)<-
 
 5-start constructing the parsing table
-
-->Implementation(❌)     Testing (❌)<-
+              ->Implementation(❌)     Testing (❌)<-
 
 6-Deal with panic mode error recovery in left mmost derivation for certain test I/P 
-
-->Implementation(❌)     Testing (❌)<-
+              ->Implementation(❌)     Testing (❌)<-
 
 7-allow predictive parser (recursive descent parser) 
-
-->Implementation(❌)     Testing (❌)<-
+              ->Implementation(❌)     Testing (❌)<-
 
 Bonus:
 
