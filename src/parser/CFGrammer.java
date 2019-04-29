@@ -45,15 +45,15 @@ public class CFGrammer {
 			 //Neglect # symbol
 			 splitLHSandRHS[0] = splitLHSandRHS[0].substring(2);
 			 //add to terminals
-			 terminals.add(splitLHSandRHS[0]);
+			 nonTerminals.add(splitLHSandRHS[0]);
 			 
 			 //determine non terminals
 			 splitRHS = new ArrayList <String>(Arrays.asList(splitLHSandRHS[1].split(" ")));
 			 for(String e :splitRHS){
 				 //check presence of single quotations
 				 if(e.indexOf('\'') >= 0)
-					 if(!nonTerminals.contains(e))
-						 nonTerminals.add(e);
+					 if(!terminals.contains(e))
+						 terminals.add(e);
 			 }
 			 
 			 //if terminal label contain more than one expression

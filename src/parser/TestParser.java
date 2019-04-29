@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class TestParser {
-	final static String filePath = "CFG grammer2.txt";
+	final static String filePath = "CFG grammer3.txt";
 	public static void main(String[] args) {		
 		CFGrammer dealWithGrammer = new CFGrammer(filePath);
 		try {
@@ -29,8 +29,12 @@ public class TestParser {
 		HashMap<String,ArrayList<String>> first = firsts.computeFirsts();
 		System.out.println("First");
 		System.out.println(first);
-		 
-		 
+		
+		
+		Follows follows = new Follows(first,terminals,nonTerminals,cfg);
+		HashMap<String,ArrayList<String>> follow = follows.computeFollows();
+		System.out.println("Follow");
+		System.out.println((follow));
 	}
 	
 
