@@ -27,7 +27,8 @@ Notes:
 first 2 for easy testing so you can solve it manually to check the output is true in certain step,
 that's for the first and second files,
 the third file is the required grammar in the PDF.
-Chosse the program you wanna test by just changing the number in the file name found in the static variable in Test class by (1,2,3)
+
+Choose the program you wanna test by just changing the number in the file name found in the static variable in Test class by (1,2,3)
 
 
 -All what you need to work on any of the above steps of the project are
