@@ -1,6 +1,8 @@
 # parser
 Compiler phase 2
-Projects steps: 
+
+Projects steps:
+
 1- reading grammar file and specify if the tokens are terminals or non terminls (DONE)
 
 2-Compute first of each terminal (DONE)
