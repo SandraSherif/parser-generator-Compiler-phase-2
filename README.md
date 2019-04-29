@@ -2,13 +2,21 @@
 Compiler phase 2
 Projects steps: 
 1- reading grammar file and specify if the tokens are terminals or non terminls (DONE)
+
 2-Compute first of each terminal (DONE)
+
 3- compute follow of each terminal
+
 4-check if grammar is LL(1) or not, in case its not LL(1) an error message should appears and the program ends
+
 5-start constructing the parsing table
+
 6-Deal with panic mode error recovery in left mmost derivation for certain test I/P
+
 7-allow predictive parser (recursive descent parser)
-Boonus:
+
+Bonus:
+
 8-apply left factoring and left recursion on the grammar before parsing step
 
 
