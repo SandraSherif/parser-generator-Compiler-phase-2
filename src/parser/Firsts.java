@@ -14,6 +14,7 @@ public class Firsts extends LL1Grammar{
 	private boolean isTerminal(String s){
 		return terminals.contains(s)? true:false;
 	}
+	
 	private boolean isNonTerminal(String s){
 		return nonTerminals.contains(s)? true:false;
 	}
@@ -22,6 +23,7 @@ public class Firsts extends LL1Grammar{
 		if(!certainTerminalFirsts.contains(token))
 			certainTerminalFirsts.add(token);
 	}
+	
 	private void dealingWithTerminalToken(Stack <String>stack,ArrayList<String> certainTerminalFirsts,String token){
 		//in case of recursive check presence of epsilon later
 		if(!first.get(token).contains("\\L")){
@@ -32,10 +34,56 @@ public class Firsts extends LL1Grammar{
 			stack.push(first.get(token).get(h));
 	}
 	
+	private void regularExperssionPath(Stack <String>stack,ArrayList<String> certainTerminalFirsts,String e,int i,String [] arr){
+		int checkFirstToken=0;
+		//check for recursion in token ex : Term = Term
+		if(arr.length==1&&arr[0].equals(terminals.get(i))){
+			 if(!certainTerminalFirsts.contains("\\L"))
+					 certainTerminalFirsts.add("\\L");
+			return;
+		}
+		
+		
+		while(!stack.peek().equals("$")){
+			String token = stack.pop();
+			//if starts with a non-terminal
+			if(checkFirstToken==0&&isNonTerminal(token)){
+				if(!certainTerminalFirsts.contains(token))
+					certainTerminalFirsts.add(token);
+				break;
+			}	
+			else
+				checkFirstToken=1;
+			
+			
+			//if non terminal token
+			if(isNonTerminal(token)){
+				dealingWithNonTerminalToken(certainTerminalFirsts, token);
+			}
+			
+			//terminal token
+			else if(isTerminal(token)){
+				if(first.containsKey(token))
+					dealingWithTerminalToken(stack, certainTerminalFirsts, token);
+				else
+					break;
+			}
+			
+			//epsilons
+			else if(token.equals("\\L")&&stack.peek().equals("$")){
+				if(!certainTerminalFirsts.contains(token)){
+					certainTerminalFirsts.add(token);
+					break;
+				}
+			}
+			
+		}
+	}
+	
 	public  HashMap<String,ArrayList<String>> computeFirsts(){
 		ArrayList<String> temp;
 		ArrayList<String> certainTerminalFirsts;
-		Stack <String>stack;
+		Stack <String>stack = null;
 		
 		for(int i=terminals.size()-1;i>=0;i--){
 			// ex: temp = [DECLARATION, IF, WHILE, ASSIGNMENT]
@@ -46,53 +94,11 @@ public class Firsts extends LL1Grammar{
 			for(String e: temp){
 				stack = new Stack<String>();
 				stack.push("$");
-				int checkFirstToken=0;
 				//split each token e in case there are spaces 
 				String [] arr = e.split(" ");
-				//check for recursion in token ex : Term = Term
-				if(arr.length==1&&arr[0].equals(terminals.get(i))){
-					 if(!certainTerminalFirsts.contains("\\L"))
-							 certainTerminalFirsts.add("\\L");
-					continue;
-				}
 				for(int j=arr.length-1;j>=0;j--)
 					stack.push(arr[j]);
-				
-				
-				while(!stack.peek().equals("$")){
-					String token = stack.pop();
-					//if starts with a non-terminal
-					if(checkFirstToken==0&&isNonTerminal(token)){
-						if(!certainTerminalFirsts.contains(token))
-							certainTerminalFirsts.add(token);
-						break;
-					}	
-					else
-						checkFirstToken=1;
-					
-					
-					//if non terminal token
-					if(isNonTerminal(token)){
-						dealingWithNonTerminalToken(certainTerminalFirsts, token);
-					}
-					
-					//terminal token
-					else if(isTerminal(token)){
-						if(first.containsKey(token))
-							dealingWithTerminalToken(stack, certainTerminalFirsts, token);
-						else
-							break;
-					}
-					
-					//epsilons
-					else if(token.equals("\\L")&&stack.peek().equals("$")){
-						if(!certainTerminalFirsts.contains(token)){
-							certainTerminalFirsts.add(token);
-							break;
-						}
-					}
-					
-				}
+				regularExperssionPath(stack, certainTerminalFirsts, e, i,arr);
 			}
 			first.put(terminals.get(i), certainTerminalFirsts);
 		}
