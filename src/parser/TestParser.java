@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class TestParser {
-	final static String filePath = "CFG grammer1.txt";
+	final static String filePath = "CFG grammer3.txt";
 	public static void main(String[] args) {		
 		CFGrammer dealWithGrammer = new CFGrammer(filePath);
 		try {
@@ -15,19 +15,20 @@ public class TestParser {
 			System.exit(0);
 		}
 		
-		
+		// Note : \L indicates epsilons 
 		ArrayList <String> terminals = dealWithGrammer.getTerminals();
 		ArrayList <String> nonTerminals = dealWithGrammer.getNonTerminals();
 		HashMap<String,ArrayList<String>> cfg = dealWithGrammer.getCfg();	
 		System.out.println("Terminals:\n"+terminals);
 		System.out.println("non Terminals:\n"+nonTerminals);
 		System.out.println("cfg:\n"+cfg);
-		System.out.println("");
+		System.out.println("--------------------------------------------------------------------");
 		
-		 Firsts firsts = new Firsts(terminals,nonTerminals,cfg);
-		 HashMap<String,ArrayList<String>> first = firsts.computeFirsts();
-		 System.out.println("First");
-		 System.out.println(first);
+		
+		Firsts firsts = new Firsts(terminals,nonTerminals,cfg);
+		HashMap<String,ArrayList<String>> first = firsts.computeFirsts();
+		System.out.println("First");
+		System.out.println(first);
 		 
 		 
 	}
