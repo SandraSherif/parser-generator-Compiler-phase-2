@@ -74,15 +74,23 @@ public class Firsts extends LL1Grammar{
 			temp = cfg.get(nonTerminals.get(i));
 			certainTerminalFirsts = new ArrayList <String>();
 			
+			ArrayList <String>tempFirsts;
 			//ex : e = DECLARATION
 			for(String ter: temp){
+				tempFirsts = new ArrayList <String>();
 				stack = new Stack<String>();
 				stack.push("$");
 				//split each token e in case there are spaces 
 				String [] arr =ter.split(" ");
 				for(int j=arr.length-1;j>=0;j--)
 					stack.push(arr[j]);
-				regularExperssionPath(stack, certainTerminalFirsts, ter, i,arr);
+				regularExperssionPath(stack, tempFirsts, ter, i,arr);
+				for(String e:tempFirsts){
+					if(!certainTerminalFirsts.contains(e))
+						certainTerminalFirsts.add(e);
+					else 
+						isLL1=false;
+				}
 			}
 			first.put(nonTerminals.get(i), certainTerminalFirsts);
 		}

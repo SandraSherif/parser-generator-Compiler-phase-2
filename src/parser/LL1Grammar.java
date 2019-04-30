@@ -11,6 +11,7 @@ public abstract class LL1Grammar {
 	protected HashMap<String,ArrayList<String>> first;
 	protected HashMap<String,ArrayList<String>> follow;
 	
+	public static boolean isLL1=true; 
 	public LL1Grammar(ArrayList <String> terminals,ArrayList <String> nonTerminals,HashMap<String,ArrayList<String>> cfg){
 		this.terminals = terminals;
 		this.nonTerminals = nonTerminals;
