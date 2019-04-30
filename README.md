@@ -16,7 +16,7 @@ Projects steps:
               ->Implementation(✔)     Testing (✔)<-
 
 5-start constructing the parsing table
-              ->Implementation(✔)     Testing (✔)<-
+              ->Implementation(✔)     Testing (❌)<-
 
 6-Deal with panic mode error recovery in left mmost derivation for certain test I/P 
               ->Implementation(❌)     Testing (❌)<-
