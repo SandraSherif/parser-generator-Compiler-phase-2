@@ -5,17 +5,14 @@ import java.util.HashMap;
 import java.util.Stack;
 
 public abstract class LL1Grammar {
-	protected ArrayList <String> terminals;
-	protected ArrayList <String> nonTerminals;
-	protected HashMap<String,ArrayList<String>> cfg;
+	protected static ArrayList <String> terminals;
+	protected static ArrayList <String> nonTerminals;
+	protected static HashMap<String,ArrayList<String>> cfg;
 	protected static HashMap<String,ArrayList<String>> first;
 	protected static HashMap<String,ArrayList<String>> follow;
 	
 	public static boolean isLL1=true; 
-	public LL1Grammar(ArrayList <String> terminals,ArrayList <String> nonTerminals,HashMap<String,ArrayList<String>> cfg){
-		this.terminals = terminals;
-		this.nonTerminals = nonTerminals;
-		this.cfg = cfg;
+	public LL1Grammar(){
 	}
 	protected boolean isTerminal(String s){
 		return terminals.contains(s)? true:false;

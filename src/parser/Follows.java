@@ -8,8 +8,7 @@ import java.util.Stack;
 public class Follows extends LL1Grammar{
 	
 	
-	public Follows(ArrayList <String> terminals,ArrayList <String> nonTerminals,HashMap<String,ArrayList<String>> cfg){
-		super(terminals,nonTerminals,cfg);
+	public Follows(){
 		follow =  new HashMap<String,ArrayList<String>>();
 		initializeFollows();
 		

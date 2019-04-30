@@ -5,9 +5,7 @@ import java.util.HashMap;
 import java.util.Stack;
 public class Firsts extends LL1Grammar{
 	
-	
-	public Firsts(ArrayList <String> terminals,ArrayList <String> nonTerminals,HashMap<String,ArrayList<String>> cfg){
-		super(terminals,nonTerminals,cfg);
+	public Firsts(){
 		first =  new HashMap<String,ArrayList<String>>();
 	}
 	

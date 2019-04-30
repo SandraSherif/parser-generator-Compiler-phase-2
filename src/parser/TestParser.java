@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class TestParser {
-	final static String filePath = "CFG grammer3.txt";
+	final static String filePath = "CFG grammer1.txt";
 	public static void main(String[] args) {		
 		CFGrammer dealWithGrammer = new CFGrammer(filePath);
 		try {
@@ -16,21 +16,21 @@ public class TestParser {
 		}
 		
 		// Note : \L indicates epsilons 
-		ArrayList <String> terminals = dealWithGrammer.getTerminals();
-		ArrayList <String> nonTerminals = dealWithGrammer.getNonTerminals();
-		HashMap<String,ArrayList<String>> cfg = dealWithGrammer.getCfg();	
-		System.out.println("Terminals:\n"+terminals);
-		System.out.println("non Terminals:\n"+nonTerminals);
-		System.out.println("cfg:\n"+cfg);
+		LL1Grammar.terminals = dealWithGrammer.getTerminals();
+		LL1Grammar.nonTerminals = dealWithGrammer.getNonTerminals();
+		LL1Grammar.cfg = dealWithGrammer.getCfg();	
+		System.out.println("Terminals:\n"+LL1Grammar.terminals);
+		System.out.println("non Terminals:\n"+LL1Grammar.nonTerminals);
+		System.out.println("cfg:\n"+LL1Grammar.cfg);
 		System.out.println("--------------------------------------------------------------------");
 		
-		Firsts firsts = new Firsts(terminals,nonTerminals,cfg);
+		Firsts firsts = new Firsts();
 		HashMap<String,ArrayList<String>> first = firsts.computeFirsts();
 		System.out.println("First");
 		System.out.println(first);
 		System.out.println("--------------------------------------------------------------------");
 		
-		Follows follows = new Follows(terminals,nonTerminals,cfg);
+		Follows follows = new Follows();
 		HashMap<String,ArrayList<String>> follow = follows.computeFollows();
 		System.out.println("Follow");
 		System.out.println((follow));
