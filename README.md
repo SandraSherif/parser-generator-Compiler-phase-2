@@ -13,7 +13,7 @@ Projects steps:
               ->Implementation(✔)     Testing (✔)<-
 
 4-check if grammar is LL(1) or not, in case its not LL(1) an error message should appears and the program ends 
-              ->Implementation(❌)     Testing (❌)<-
+              ->Implementation(✔)     Testing ( )<-
 
 5-start constructing the parsing table
               ->Implementation(❌)     Testing (❌)<-
