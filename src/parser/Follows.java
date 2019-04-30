@@ -23,9 +23,12 @@ public class Follows extends LL1Grammar{
 		ArrayList<String> temp;
 		ArrayList<String> certainTerminalFollows;
 		Stack <String>stack = null;
-		for(int i=1;i<nonTerminals.size();i++){
+		for(int i=0;i<nonTerminals.size();i++){
 			String nonTerminal = nonTerminals.get(i);
-			certainTerminalFollows = new ArrayList <String>();
+			if(i==0)
+				certainTerminalFollows=follow.get(nonTerminal);
+			else
+				certainTerminalFollows = new ArrayList <String>();
 			//loop using each terminal on all other terminals 
 			for(int j=0;j<nonTerminals.size();j++){
 				String currentnonTerminalChecking = nonTerminals.get(j);
@@ -54,7 +57,6 @@ public class Follows extends LL1Grammar{
 					for(int k=arr.length-1;k>=Arrays.asList(arr).indexOf(nonTerminal)+1;k--)
 						stack.push(arr[k]);
 					
-					
 					while(!stack.peek().equals("$")){
 						String token = stack.pop();
 						//if starts with a terminal
@@ -64,11 +66,11 @@ public class Follows extends LL1Grammar{
 							break;
 						}	
 						checkFirstToken=1;
-						//if non terminal token
+						//if terminal token
 						if(isTerminal(token)){
 							dealingWithTerminalToken(certainTerminalFollows, token);
 						}
-						//terminal token
+						//non terminal token
 						else if(isNonTerminal(token)){
 							if(first.containsKey(token))
 								dealingWithNonTerminalToken(stack, token);
