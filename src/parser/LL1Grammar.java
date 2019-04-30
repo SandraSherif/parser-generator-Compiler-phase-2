@@ -8,8 +8,8 @@ public abstract class LL1Grammar {
 	protected ArrayList <String> terminals;
 	protected ArrayList <String> nonTerminals;
 	protected HashMap<String,ArrayList<String>> cfg;
-	protected HashMap<String,ArrayList<String>> first;
-	protected HashMap<String,ArrayList<String>> follow;
+	protected static HashMap<String,ArrayList<String>> first;
+	protected static HashMap<String,ArrayList<String>> follow;
 	
 	public static boolean isLL1=true; 
 	public LL1Grammar(ArrayList <String> terminals,ArrayList <String> nonTerminals,HashMap<String,ArrayList<String>> cfg){

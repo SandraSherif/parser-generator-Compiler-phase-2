@@ -8,7 +8,7 @@ public class Firsts extends LL1Grammar{
 	
 	public Firsts(ArrayList <String> terminals,ArrayList <String> nonTerminals,HashMap<String,ArrayList<String>> cfg){
 		super(terminals,nonTerminals,cfg);
-		this.first =  new HashMap<String,ArrayList<String>>();
+		first =  new HashMap<String,ArrayList<String>>();
 	}
 	
 	private void regularExperssionPath(Stack <String>stack,ArrayList<String> certainTerminalFirsts,String e,int i,String [] arr){

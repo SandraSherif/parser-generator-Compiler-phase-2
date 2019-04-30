@@ -30,13 +30,13 @@ public class TestParser {
 		System.out.println(first);
 		System.out.println("--------------------------------------------------------------------");
 		
-		Follows follows = new Follows(first,terminals,nonTerminals,cfg);
+		Follows follows = new Follows(terminals,nonTerminals,cfg);
 		HashMap<String,ArrayList<String>> follow = follows.computeFollows();
 		System.out.println("Follow");
 		System.out.println((follow));
 		
-		/*
-		if(LL1Grammar.isLL1==false){
+		
+		/*if(LL1Grammar.isLL1==false){
 			System.out.println("\n"+new Exception("This Grammar is not LL1"));
 			System.exit(0);
 		}*/
