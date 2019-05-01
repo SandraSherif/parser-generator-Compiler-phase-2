@@ -41,33 +41,63 @@ public class ParsingTable {
 			for (String s:val){
 				//check for epsilon in RHS
 				if(!s.equals("\\L")){
-					// take first of RHS of the production
-					
-					if(terminals.contains(s.split(" ")[0])){
-						//if first char in RHS is terminal
-						colIndex = terminals.indexOf(s.split(" ")[0]);
-						ParsingTable[rowIndex][colIndex] = new Pair<String, String>(key,s);
-						
-						
-					}else{
-						
-						ArrayList<String> firstArr = first.get(s.split(" ")[0]);
+					//RHS not epsilon -> take first of RHS of the production
+					String [] rhs = s.split(" ");
+					int i = 0;
+					ArrayList<String> firstArr;
+					while(true){
+//						System.out.println("in while "+rhs[i]);
+						//if a char in RHS is terminal
+						if(terminals.contains(rhs[i])){
 							
-						for(String firstElement:firstArr){
-							
-							colIndex = terminals.indexOf(firstElement);
+							colIndex = terminals.indexOf(s.split(" ")[i]);
 							ParsingTable[rowIndex][colIndex] = new Pair<String, String>(key,s);
 							
+							break;
+						
+						}else{
+							//if a char in RHS is not a terminal
+							
+							firstArr = first.get(rhs[i]);
+							for(int j=0;j<firstArr.size();j++){
+								String firstElement = firstArr.get(j);
+								
+								if(!firstElement.equals("\\L")){
+									colIndex = terminals.indexOf(firstElement);
+									ParsingTable[rowIndex][colIndex] = new Pair<String, String>(key,s);
+									
+								}
+								else{
+									//if one of the first of a char is epsilon
+									
+									if((i+1) == rhs.length){
+										//take follow of LHS of the production
+										
+										ArrayList<String> followArr = follow.get(key);
+										for(String followElement:followArr){
+											
+											colIndex = terminals.indexOf(followElement);
+											ParsingTable[rowIndex][colIndex] = new Pair<String, String>(key,s);
+										}
+										
+										break;
+									}
+									
+									//if not the last character
+									i++;
+																			
+								}
+								break;	
+							}
+//							break;
 						}
-													
-						
-					}
-						
+							
+					}	
 					
 					
 				}else{
-					//take follow of LHS of the production
 					
+					//RHS is epsilon -> take follow of LHS of the production
 					ArrayList<String> followArr = follow.get(key);
 					for(String followElement:followArr){
 						

@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class TestParser {
-	final static String filePath = "CFG grammer3.txt";
+	final static String filePath = "CFG grammer8.txt";
 	public static void main(String[] args) {		
 		
 		//Step 1: Read CFG and find terminals and non-terminals
