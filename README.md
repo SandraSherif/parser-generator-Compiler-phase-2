@@ -21,9 +21,6 @@ Projects steps:
 6-Deal with panic mode error recovery in left mmost derivation for certain test I/P 
               ->Implementation(❌)     Testing (❌)<-
 
-7-allow predictive parser (recursive descent parser) 
-              ->Implementation(❌)     Testing (❌)<-
-
 Bonus:
 
 8-apply left factoring and left recursion on the grammar before parsing step
